@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Introduction to JavaScript",
+    "duration": "15",
+    "language": "JavaScript",
+    "level": "Junior",
+    "instructor": {
+      "name": "Lisa Chen",
+      "email": "lisa.chen@javascriptbasics.com"
+    }
+  }
+}

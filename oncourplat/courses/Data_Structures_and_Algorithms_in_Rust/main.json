@@ -1,0 +1,44 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: Arrays & Vectors",
+      "html": "<h2>Linear Data Structures</h2><p>Understand memory layout and performance characteristics of arrays vs dynamic arrays.</p><h3>Fixed Array vs Vec:</h3><pre><code>// Fixed size array [T; N] - stack allocated&#10;let arr: [i32; 5] = [1, 2, 3, 4, 5];&#10;assert_eq!(arr[2], 3);&#10;&#10;// Dynamic Vec&lt;T&gt; - heap allocated&#10;let mut vec = Vec::new();&#10;vec.push(10);&#10;vec.push(20);&#10;vec[0] = 100; // Direct indexing&#10;&#10;// Capacity & Reserve&#10;vec.reserve(10); // Pre-allocate space</code></pre><h3>Performance:</h3><table><tr><th>Operation</th><th>Array</th><th>Vec</th></tr><tr><td>Access</td><td>O(1)</td><td>O(1)</td></tr><tr><td>Insert End</td><td>-</td><td>Amortized O(1)</td></tr><tr><td>Insert Middle</td><td>-</td><td>O(n)</td></tr></table>"
+    },
+    {
+      "title": "Lesson 2: Linked Lists",
+      "html": "<h2>Custom Linked List Implementation</h2><p>Master pointers, ownership, and recursive data structures.</p><h3>Node & List:</h3><pre><code>#[derive(Clone)]&#10;struct Node&lt;T&gt; {&#10;    value: T,&#10;    next: Option&lt;Box&lt;Node&lt;T&gt;&gt;&gt;,&#10;}</code></pre><pre><code>impl&lt;T&gt; Node&lt;T&gt; {&#10;    fn new(value: T) -> Self {&#10;        Node { value, next: None }&#10;    }&#10;&#10;    fn push(&mut self, value: T) {&#10;        let new_node = Box::new(Node::new(value));&#10;        new_node.next = self.next.take();&#10;        self.next = Some(new_node);&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Binary Search Trees",
+      "html": "<h2>Balanced BST Implementation</h2><p>Self-balancing trees for O(log n) operations.</p><h3>AVL Tree Node:</h3><pre><code>#[derive(Debug)]&#10;struct AVLNode&lt;T&gt; {&#10;    value: T,&#10;    height: usize,&#10;    left: Option&lt;Box&lt;AVLNode&lt;T&gt;&gt;&gt;,&#10;    right: Option&lt;Box&lt;AVLNode&lt;T&gt;&gt;&gt;,&#10;}</code></pre><pre><code>impl&lt;T: Ord&gt; AVLNode&lt;T&gt; {&#10;    fn insert(&mut self, value: T) -&gt; bool {&#10;        if value &lt; self.value {&#10;            if let Some(ref mut left) = self.left {&#10;                left.insert(value)&#10;            } else {&#10;                self.left = Some(Box::new(AVLNode::new(value)));&#10;                true&#10;            }&#10;        } else if value &gt; self.value {&#10;            // Similar for right&#10;        }&#10;        self.rebalance();&#10;        false // Already exists&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Hash Tables",
+      "html": "<h2>Rust HashMap Internals</h2><p>Understand hashing, collisions, and load factors.</p><h3>Custom HashMap:</h3><pre><code>use std::hash::{Hash, Hasher};&#10;use std::collections::hash_map::DefaultHasher;&#10;&#10;struct MyHashMap&lt;K, V&gt; {&#10;    buckets: Vec&lt;Vec&lt;(K, V)&gt;&gt;,&#10;    size: usize,&#10;}</code></pre><pre><code>impl&lt;K: Hash + Eq, V&gt; MyHashMap&lt;K, V&gt; {&#10;    fn insert(&mut self, key: K, value: V) {&#10;        let mut hasher = DefaultHasher::new();&#10;        key.hash(&mut hasher);&#10;        let hash = hasher.finish() as usize % self.buckets.len();&#10;        self.buckets[hash].push((key, value));&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 5: Graphs & BFS/DFS",
+      "html": "<h2>Graph Algorithms</h2><p>Breadth-first and depth-first traversal with applications.</p><h3>Adjacency List:</h3><pre><code>use std::collections::{HashMap, VecDeque, HashSet};&#10;&#10;#[derive(Debug, Clone)]&#10;struct Graph&lt;T&gt; {&#10;    adj: HashMap&lt;T, Vec&lt;T&gt;&gt;,&#10;}</code></pre><pre><code>impl&lt;T: Eq + Hash + Clone&gt; Graph&lt;T&gt; {&#10;    fn bfs(&self, start: &T) -&gt; Vec&lt;T&gt; {&#10;        let mut visited = HashSet::new();&#10;        let mut queue = VecDeque::new();&#10;        queue.push_back(start.clone());&#10;        &#10;        while let Some(node) = queue.pop_front() {&#10;            if !visited.insert(node.clone()) { continue; }&#10;            for neighbor in self.adj.get(&node).unwrap() {&#10;                queue.push_back(neighbor.clone());&#10;            }&#10;        }&#10;        visited.into_iter().collect()&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 6: Sorting Algorithms",
+      "html": "<h2>Master O(n log n) Sorting</h2><p>Implement QuickSort, MergeSort, and compare performance.</p><h3>QuickSort (In-place):</h3><pre><code>fn quicksort&lt;T: PartialOrd&gt;(arr: &mut [T]) {&#10;    if arr.len() &lt;= 1 { return; }&#10;    &#10;    let pivot_idx = partition(arr);&#10;    quicksort(&mut arr[0..pivot_idx]);&#10;    quicksort(&mut arr[pivot_idx + 1..arr.len()]);&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 7: Dynamic Programming",
+      "html": "<h2>Optimize with Memoization</h2><p>Solve complex problems by breaking into subproblems.</p><h3>Fibonacci DP:</h3><pre><code>fn fib_memo(n: usize, memo: &mut HashMap&lt;usize, u64&gt;) -> u64 {&#10;    if let Some(&result) = memo.get(&n) {&#10;        return result;&#10;    }&#10;    &#10;    let result = if n &lt;= 1 { n as u64 } else {&#10;        fib_memo(n - 1, memo) + fib_memo(n - 2, memo)&#10;    };&#10;    &#10;    memo.insert(n, result);&#10;    result&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 8: Heaps & Priority Queues",
+      "html": "<h2>Binary Heaps Implementation</h2><p>O(log n) insert and extract-min operations.</p><h3>Min-Heap:</h3><pre><code>struct MinHeap&lt;T&gt; {&#10;    heap: Vec&lt;T&gt;,&#10;}</code></pre><pre><code>impl&lt;T: PartialOrd&gt; MinHeap&lt;T&gt; {&#10;    fn heapify_up(&mut self, idx: usize) {&#10;        let mut child = idx;&#10;        while child &gt; 0 {&#10;            let parent = (child - 1) / 2;&#10;            if self.heap[child] &lt; self.heap[parent] {&#10;                self.heap.swap(child, parent);&#10;                child = parent;&#10;            } else { break; }&#10;        }&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 9: Trie Data Structure",
+      "html": "<h2>Prefix Tree for Strings</h2><p>Fast prefix matching, autocomplete, spell checking.</p><h3>Trie Node:</h3><pre><code>struct TrieNode {&#10;    children: [Option&lt;Box&lt;TrieNode&gt;&gt;; 26],&#10;    is_end: bool,&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 10: Algorithmic Problems",
+      "html": "<h2>LeetCode-Style Challenges</h2><p>Solve 10 classic problems with optimal solutions.</p><h3>Problems Covered:</h3><ul><li>Two Sum (O(n))</li><li>LRU Cache (O(1))</li><li>Word Break (DP)</li><li>Median of Two Sorted Arrays</li><li>Regular Expression Matching</li></ul>"
+    }
+  ]
+}

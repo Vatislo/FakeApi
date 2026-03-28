@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Mastering PHP",
+    "duration": "30",
+    "language": "PHP",
+    "level": "Middle",
+    "instructor": {
+      "name": "Anna Petrova",
+      "email": "anna.petrova@example.com"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: Enterprise Architecture",
+      "html": "<h2>Java EE Application Architecture</h2><p>Java EE builds scalable enterprise applications using layered architecture and containers.</p><h3>Core Layers:</h3><ul><li><strong>Presentation:</strong> JSF, JSP, Servlets</li><li><strong>Business:</strong> EJB, CDI beans</li><li><strong>Persistence:</strong> JPA/Hibernate</li><li><strong>Integration:</strong> JMS, JCA</li></ul><pre><code>// 3-Tier Architecture Example&#10;@WebServlet(\"/user\")&#10;public class UserServlet extends HttpServlet {&#10;    @Inject UserService userService;&#10;    &#10;    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {&#10;        List&lt;User&gt; users = userService.findAll();&#10;        req.setAttribute(\"users\", users);&#10;        req.getRequestDispatcher(\"/users.jsp\").forward(req, resp);&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 2: EJB 4.0 Features",
+      "html": "<h2>Enterprise JavaBeans</h2><p>EJBs provide transaction management, security, pooling automatically.</p><h3>Session Beans:</h3><pre><code>@Stateless&#10;public class OrderService {&#10;    @PersistenceContext&#10;    EntityManager em;&#10;    &#10;    @TransactionAttribute(TransactionAttributeType.REQUIRED)&#10;    public void createOrder(Order order) {&#10;        em.persist(order);&#10;    }&#10;}</code></pre><h3>Message-Driven Beans:</h3><pre><code>@MessageDriven(activationConfig = {&#10;    @ActivationConfigProperty(propertyName = \"destinationType\", &#10;        propertyValue = \"javax.jms.Queue\")&#10;})&#10;public class OrderProcessor implements MessageListener {&#10;    public void onMessage(Message message) {&#10;        // Process order asynchronously&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 3: JPA Advanced Mapping",
+      "html": "<h2>JPA/Hibernate Deep Dive</h2><p>Master complex entity relationships and query optimization.</p><h3>Inheritance Strategies:</h3><pre><code>@Entity&#10;@Inheritance(strategy = InheritanceType.JOINED)&#10;public abstract class Employee {&#10;    @Id private Long id;&#10;    private String name;&#10;}&#10;&#10;@Entity&#10;public class Developer extends Employee {&#10;    private String language;&#10;}</code></pre><h3>Custom Queries:</h3><pre><code>@Query(\"SELECT e FROM Employee e WHERE e.salary &gt; :minSalary\")&#10;List&lt;Employee&gt; findHighEarners(@Param(\"minSalary\") BigDecimal minSalary);&#10;&#10;@Query(value = \"SELECT * FROM employees WHERE dept = ?1\", nativeQuery = true)&#10;List&lt;Employee&gt; findByDeptNative(String dept);</code></pre>"
+    },
+    {
+      "title": "Lesson 4: JSF 4.0 PrimeFaces",
+      "html": "<h2>Modern JSF Development</h2><p>JSF + PrimeFaces = Rich enterprise UIs with minimal JavaScript.</p><h3>Facelets Template:</h3><pre><code>&lt;!DOCTYPE html&gt;&#10;&lt;html xmlns=\"http://www.w3.org/1999/xhtml\"&#10;      xmlns:h=\"http://java.sun.com/jsf/html\"&#10;      xmlns:p=\"http://primefaces.org/ui\"&gt;&#10;&lt;h:head&gt;&#10;    &lt;title&gt;#{view.viewId}&lt;/title&gt;&#10;&lt;/h:head&gt;&#10;&lt;h:body&gt;&#10;    &lt;p:dataTable value=\"#{userController.users}\" var=\"user\"&gt;&#10;        &lt;p:column headerText=\"Name\"&gt;#{user.name}&lt;/p:column&gt;&#10;        &lt;p:column headerText=\"Email\"&gt;#{user.email}&lt;/p:column&gt;&#10;    &lt;/p:dataTable&gt;&#10;&lt;/h:body&gt;&#10;&lt;/html&gt;</code></pre>"
+    },
+    {
+      "title": "Lesson 5: CDI Dependency Injection",
+      "html": "<h2>Contexts & Dependency Injection</h2><p>CDI manages beans lifecycle and dependencies automatically.</p><h3>Qualifier Example:</h3><pre><code>@Qualifier&#10;@Target({TYPE, METHOD, FIELD, PARAMETER})&#10;@Retention(RUNTIME)&#10;public @interface Production {}&#10;&#10;@Production&#10;@Stateless&#10;public class ProductionUserService implements UserService {&#10;    // Production database&#10;}</code></pre><pre><code>@Inject @Production UserService userService;</code></pre>"
+    },
+    {
+      "title": "Lesson 6: JAX-RS REST APIs",
+      "html": "<h2>RESTful Web Services</h2><p>Build APIs consumed by React, mobile apps, microservices.</p><h3>Complete REST Resource:</h3><pre><code>@Path(\"/api/users\")&#10;@Produces(MediaType.APPLICATION_JSON)&#10;@Consumes(MediaType.APPLICATION_JSON)&#10;public class UserResource {&#10;    &#10;    @GET&#10;    public Response getUsers() {&#10;        return Response.ok(userService.findAll()).build();&#10;    }&#10;    &#10;    @POST&#10;    public Response createUser(User user) {&#10;        userService.create(user);&#10;        return Response.created(URI.create(\"/api/users/\" + user.getId())).build();&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 7: JMS Messaging",
+      "html": "<h2>Enterprise Messaging</h2><p>Asynchronous communication between application components.</p><h3>Point-to-Point (Queue):</h3><pre><code>@Resource(mappedName = \"jms/MyQueue\")&#10;Queue queue;&#10;&#10;@Inject&#10;JMSContext context;&#10;&#10;public void sendOrder(Order order) {&#10;    try (JMSContext ctx = context.createContext()) {&#10;        ctx.createProducer().send(queue, order);&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 8: Security Framework",
+      "html": "<h2>Java EE Security</h2><p>Role-based access control, OAuth2, JWT integration.</p><h3>Security Configuration:</h3><pre><code>&lt;security-constraint&gt;&#10;    &lt;web-resource-collection&gt;&#10;        &lt;web-resource-name&gt;Admin&lt;/web-resource-name&gt;&#10;        &lt;url-pattern&gt;/admin/*&lt;/url-pattern&gt;&#10;    &lt;/web-resource-collection&gt;&#10;    &lt;auth-constraint&gt;&#10;        &lt;role-name&gt;admin&lt;/role-name&gt;&#10;    &lt;/auth-constraint&gt;&#10;&lt;/security-constraint&gt;</code></pre>"
+    },
+    {
+      "title": "Lesson 9: MicroProfile Integration",
+      "html": "<h2>Microservices with Java EE</h2><p>MicroProfile adds cloud-native features to Java EE.</p><h3>Config & Metrics:</h3><pre><code>@Counted&#10;@Timed&#10;@GET&#10;@Path(\"/orders/{id}\")&#10;public Order getOrder(@PathParam(\"id\") Long id) {&#10;    return orderService.find(id);&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 10: Docker & Kubernetes",
+      "html": "<h2>Containerized Java EE</h2><p>Deploy enterprise apps to cloud-native platforms.</p><h3>Dockerfile:</h3><pre><code>FROM payara/server-full:latest&#10;COPY target/myapp.war $DEPLOY_DIR&#10;ENV MP_JWT_VERIFY_PUBLICKEY_LOCATION=/path/to/key.pub&#10;EXPOSE 8080 8181</code></pre>"
+    }
+  ]
+}

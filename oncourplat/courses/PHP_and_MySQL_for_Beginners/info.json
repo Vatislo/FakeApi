@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "PHP and MySQL for Beginners",
+    "duration": "15",
+    "language": "PHP",
+    "level": "Junior",
+    "instructor": {
+      "name": "Maria Garcia",
+      "email": "maria.garcia@phpbasics.com"
+    }
+  }
+}

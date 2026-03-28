@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Building REST APIs with Python",
+    "duration": "40",
+    "language": "Python",
+    "level": "Senior",
+    "instructor": {
+      "name": "Sophie Laurent",
+      "email": "sophie.laurent@api.expert"
+    }
+  }
+}

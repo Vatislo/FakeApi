@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Full Stack PHP Development",
+    "duration": "25",
+    "language": "PHP",
+    "level": "Middle",
+    "instructor": {
+      "name": "James Wilson",
+      "email": "james.wilson@fullstackphp.com"
+    }
+  }
+}

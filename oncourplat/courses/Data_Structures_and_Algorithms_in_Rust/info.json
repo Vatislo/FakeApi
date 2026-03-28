@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Data Structures and Algorithms in Rust",
+    "duration": "40",
+    "language": "Rust",
+    "level": "Senior",
+    "instructor": {
+      "name": "Dr. Akira Tanaka",
+      "email": "akira.tanaka@rustalgo.com"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: Advanced Decorators",
+      "html": "<h2>Mastering Decorators</h2><p>Decorators wrap functions to add functionality without modifying original code. Perfect for logging, timing, authentication.</p><h3>Basic Decorator:</h3><pre><code>def timer(func):&#10;    import time&#10;    def wrapper(*args, **kwargs):&#10;        start = time.time()&#10;        result = func(*args, **kwargs)&#10;        print(f'{func.__name__} took {time.time()-start:.4f}s')&#10;        return result&#10;    return wrapper&#10;&#10;@timer&#10;def slow_function(n):&#10;    time.sleep(1)&#10;    return n*n</code></pre><h3>Decorator with Parameters:</h3><pre><code>def repeat(times):&#10;    def decorator(func):&#10;        def wrapper(*args, **kwargs):&#10;            for _ in range(times):&#10;                result = func(*args, **kwargs)&#10;            return result&#10;        return wrapper&#10;    return decorator&#10;&#10;@repeat(3)&#10;def say_hello(): print(\"Hello!\")</code></pre>"
+    },
+    {
+      "title": "Lesson 2: Metaclasses Deep Dive",
+      "html": "<h2>Metaclasses - Classes of Classes</h2><p>Metaclasses control class creation. Used for ORMs, validation, singletons.</p><h3>Singleton Metaclass:</h3><pre><code>class SingletonMeta(type):&#10;    _instances = {}&#10;    def __call__(cls, *args, **kwargs):&#10;        if cls not in cls._instances:&#10;            cls._instances[cls] = super().__call__(*args, **kwargs)&#10;        return cls._instances[cls]&#10;&#10;class Database(metaclass=SingletonMeta):&#10;    def connect(self):&#10;        print(\"Connected to DB\")</code></pre><h3>Custom Validation:</h3><pre><code>class ValidationMeta(type):&#10;    def __new__(cls, name, bases, attrs):&#10;        # Add validation to methods&#10;        for key, value in attrs.items():&#10;            if callable(value) and key.startswith('validate_'):&#10;                attrs[key] = cls.validate_wrapper(value)&#10;        return super().__new__(cls, name, bases, attrs)</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Async/Await Advanced",
+      "html": "<h2>Advanced Concurrency Patterns</h2><p>Build high-performance async applications with proper patterns.</p><h3>Concurrent API Calls:</h3><pre><code>import asyncio&#10;import aiohttp&#10;&#10;async def fetch_url(session, url):&#10;    async with session.get(url) as response:&#10;        return await response.json()&#10;&#10;async def fetch_all(urls):&#10;    async with aiohttp.ClientSession() as session:&#10;        tasks = [fetch_url(session, url) for url in urls]&#10;        return await asyncio.gather(*tasks)&#10;&#10;# Usage&#10;urls = ['https://api1', 'https://api2', 'https://api3']&#10;results = asyncio.run(fetch_all(urls))</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Context Managers Advanced",
+      "html": "<h2>Custom Context Managers</h2><p>Automatically manage resources with context managers.</p><h3>Using contextlib:</h3><pre><code>from contextlib import contextmanager&#10;&#10;@contextmanager&#10;def temp_directory():&#10;    import tempfile&#10;    import shutil&#10;    temp_dir = tempfile.mkdtemp()&#10;    try:&#10;        yield temp_dir&#10;    finally:&#10;        shutil.rmtree(temp_dir)&#10;&#10;with temp_directory() as tmpdir:&#10;    # Use temporary directory&#10;    path = f'{tmpdir}/file.txt'&#10;    with open(path, 'w') as f:&#10;        f.write('test')</code></pre>"
+    },
+    {
+      "title": "Lesson 5: Generators & Coroutines",
+      "html": "<h2>Memory Efficient Iteration</h2><p>Generators yield values on-demand. Perfect for large datasets.</p><h3>Fibonacci Generator:</h3><pre><code>def fibonacci(max_terms):&#10;    a, b = 0, 1&#10;    for _ in range(max_terms):&#10;        yield a&#10;        a, b = b, a + b&#10;&#10;# Usage - memory efficient!&#10;fib_gen = fibonacci(1000000)&#10;for i, fib in enumerate(fib_gen):&#10;    if i &gt;= 10: break&#10;    print(fib)</code></pre>"
+    },
+    {
+      "title": "Lesson 6: Multiprocessing Mastery",
+      "html": "<h2>Parallel CPU Processing</h2><p>Use multiple processes for CPU-bound tasks (bypasses GIL).</p><h3>Process Pool:</h3><pre><code>from multiprocessing import Pool&#10;import time&#10;&#10;def cpu_heavy(n):&#10;    total = 0&#10;    for i in range(10000000):&#10;        total += i ** n&#10;    return total&#10;&#10;with Pool(processes=4) as pool:&#10;    results = pool.map(cpu_heavy, [2, 3, 4, 5])&#10;print(results)</code></pre>"
+    },
+    {
+      "title": "Lesson 7: Type Hints & Protocols",
+      "html": "<h2>Static Type Checking</h2><p>Make Python code more robust with type hints and mypy.</p><h3>Advanced Type Hints:</h3><pre><code>from typing import List, Dict, Callable, Protocol&#10;&#10;class Drawable(Protocol):&#10;    def draw(self) -&gt; None: ...&#10;&#10;def render_objects(objects: List[Drawable]) -&gt; None:&#10;    for obj in objects:&#10;        obj.draw()&#10;&#10;class Circle:&#10;    def draw(self) -&gt; None:&#10;        print(\"Drawing circle\")</code></pre>"
+    },
+    {
+      "title": "Lesson 8: Descriptors Pattern",
+      "html": "<h2>Attribute Access Control</h2><p>Descriptors control how attributes are accessed/modified.</p><h3>Validated Descriptor:</h3><pre><code>class PositiveInt:&#10;    def __set_name__(self, owner, name):&#10;        self.name = name&#10;&#10;    def __get__(self, obj, owner):&#10;        return obj.__dict__[self.name]&#10;&#10;    def __set__(self, obj, value):&#10;        if not isinstance(value, int) or value &lt; 0:&#10;            raise ValueError(f'{self.name} must be positive int')&#10;        obj.__dict__[self.name] = value&#10;&#10;class Product:&#10;    price = PositiveInt()</code></pre>"
+    },
+    {
+      "title": "Lesson 9: C Extensions Basics",
+      "html": "<h2>Speed Up Python with C</h2><p>Write performance-critical code in C, expose to Python.</p><h3>hello.c:</h3><pre><code>#include &lt;Python.h&gt;&#10;&#10;static PyObject*&#10;fast_sum(PyObject* self, PyObject* args) {&#10;    int n, total = 0;&#10;    if (!PyArg_ParseTuple(args, \"i\", &amp;n))&#10;        return NULL;&#10;    for (int i = 0; i &lt;= n; i++)&#10;        total += i;&#10;    return PyLong_FromLong(total);&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 10: Performance Profiling",
+      "html": "<h2>Measure & Optimize Code</h2><p>Find bottlenecks and optimize effectively.</p><h3>Profiling Tools:</h3><pre><code>import cProfile&#10;import time&#10;&#10;def slow_function():&#10;    total = 0&#10;    for i in range(1000000):&#10;        total += i&#10;    return total&#10;&#10;cProfile.run('slow_function()')</code></pre><h3>Line Profiler:</h3><pre><code>@profile&#10;def process_data(data):&#10;    result = []&#10;    for item in data:  # This line is slow!&#10;        result.append(item * 2)&#10;    return result</code></pre>"
+    }
+  ]
+}

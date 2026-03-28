@@ -1,0 +1,32 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: NumPy Fundamentals",
+      "html": "<h2>NumPy - Numerical Computing</h2><p>NumPy is the foundation of data science in Python. Handles arrays and mathematical operations efficiently.</p><h3>Creating Arrays:</h3><pre><code>import numpy as np&#10;&#10;# From list&#10;arr = np.array([1, 2, 3, 4, 5])&#10;&#10;# Zeros and ones&#10;zeros = np.zeros(10)&#10;ones = np.ones((3, 3))&#10;&#10;# Range&#10;range_arr = np.arange(0, 10, 2)  # [0,2,4,6,8]&#10;&#10;print(arr.shape, arr.dtype)</code></pre><h3>Vectorized Operations:</h3><pre><code>a = np.array([1, 2, 3])&#10;b = np.array([4, 5, 6])&#10;&#10;sum_ab = a + b      # [5,7,9]&#10;product = a * b     # [4,10,18]&#10;mean = np.mean(a)   # 2.0</code></pre>"
+    },
+    {
+      "title": "Lesson 2: Pandas DataFrames",
+      "html": "<h2>Pandas - Data Manipulation</h2><p>Pandas provides DataFrames - Excel-like tables for Python.</p><h3>Creating DataFrames:</h3><pre><code>import pandas as pd&#10;&#10;# From dictionary&#10;data = {&#10;    'name': ['Alice', 'Bob', 'Charlie'],&#10;    'age': [25, 30, 35],&#10;    'city': ['NY', 'LA', 'Chicago']&#10;}&#10;df = pd.DataFrame(data)&#10;&#10;# From CSV&#10;df = pd.read_csv('data.csv')</code></pre><h3>Basic Operations:</h3><pre><code># Select columns&#10;names = df['name']&#10;&#10;# Filter rows&#10;young = df[df['age'] &lt; 30]&#10;&#10;# Add column&#10;df['adult'] = df['age'] &gt;= 18&#10;&#10;# Group by&#10;avg_age = df.groupby('city')['age'].mean()</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Data Visualization",
+      "html": "<h2>Matplotlib & Seaborn</h2><p>Create publication-quality charts for data analysis.</p><h3>Matplotlib Basics:</h3><pre><code>import matplotlib.pyplot as plt&#10;import numpy as np&#10;&#10;x = np.linspace(0, 10, 100)&#10;y = np.sin(x)&#10;&#10;plt.figure(figsize=(10, 6))&#10;plt.plot(x, y, label='sin(x)')&#10;plt.title('Sine Wave')&#10;plt.xlabel('x')&#10;plt.ylabel('sin(x)')&#10;plt.legend()&#10;plt.grid(True)&#10;plt.show()</code></pre><h3>Seaborn (Higher level):</h3><pre><code>import seaborn as sns&#10;&#10;sns.scatterplot(data=df, x='age', y='salary', hue='city')&#10;plt.title('Salary vs Age by City')&#10;plt.show()</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Data Cleaning",
+      "html": "<h2>Handling Missing & Dirty Data</h2><p>Real data is messy. Learn to clean it properly.</p><h3>Detecting Issues:</h3><pre><code># Missing values&#10;print(df.isnull().sum())&#10;&#10;# Duplicates&#10;print(df.duplicated().sum())&#10;&#10;# Data types&#10;print(df.dtypes)</code></pre><h3>Cleaning Operations:</h3><pre><code># Fill missing&#10;df['salary'].fillna(df['salary'].mean(), inplace=True)&#10;&#10;# Drop missing&#10;df.dropna(subset=['email'], inplace=True)&#10;&#10;# Remove duplicates&#10;df.drop_duplicates(inplace=True)&#10;&#10;# Fix data types&#10;df['age'] = pd.to_numeric(df['age'], errors='coerce')</code></pre>"
+    },
+    {
+      "title": "Lesson 5: Statistical Analysis",
+      "html": "<h2>Descriptive Statistics</h2><p>Summarize and understand your data.</p><h3>Basic Stats:</h3><pre><code># Single column&#10;print(df['salary'].describe())&#10;&#10;# All numeric columns&#10;print(df.describe())&#10;&#10;# Correlation matrix&#10;print(df.corr())</code></pre><h3>Custom Analysis:</h3><pre><code># Group statistics&#10;grouped = df.groupby('department')['salary'].agg([&#10;    'count', 'mean', 'std', 'min', 'max'&#10;])&#10;&#10;# Cross-tabulation&#10;pivot = pd.pivot_table(df, values='salary', index='department', columns='gender')</code></pre>"
+    },
+    {
+      "title": "Lesson 6: Machine Learning Intro",
+      "html": "<h2>Scikit-learn Basics</h2><p>Build your first ML model in 10 lines!</p><h3>Linear Regression:</h3><pre><code>from sklearn.linear_model import LinearRegression&#10;from sklearn.model_selection import train_test_split&#10;from sklearn.metrics import mean_squared_error&#10;&#10;X = df[[ 'experience', 'education' ]]&#10;y = df['salary']&#10;&#10;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)&#10;&#10;model = LinearRegression()&#10;model.fit(X_train, y_train)&#10;&#10;y_pred = model.predict(X_test)&#10;rmse = np.sqrt(mean_squared_error(y_test, y_pred))&#10;print(f'RMSE: {rmse:.2f}')</code></pre>"
+    },
+    {
+      "title": "Lesson 7: End-to-End Project",
+      "html": "<h2>Complete Data Science Workflow</h2><p>From raw data → cleaned → visualized → modeled.</p><h3>Pipeline Example:</h3><pre><code>from sklearn.pipeline import Pipeline&#10;from sklearn.preprocessing import StandardScaler&#10;&#10;pipeline = Pipeline([&#10;    ('scaler', StandardScaler()),&#10;    ('model', LinearRegression())&#10;])&#10;&#10;pipeline.fit(X_train, y_train)&#10;y_pred = pipeline.predict(X_test)</code></pre><p><strong>Project Steps:</strong></p><ol><li>Load & explore data</li><li>Clean missing values</li><li>Feature engineering</li><li>Train/test split</li><li>Model training & evaluation</li><li>Visualize results</li><li>Save model</li></ol>"
+    }
+  ]
+}

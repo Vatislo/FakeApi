@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Advanced Python Programming",
+    "duration": "40",
+    "language": "Python",
+    "level": "Senior",
+    "instructor": {
+      "name": "Dr. Michael Chen",
+      "email": "michael.chen@pythonexpert.com"
+    }
+  }
+}

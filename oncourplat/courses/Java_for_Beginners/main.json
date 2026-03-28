@@ -1,0 +1,24 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: Hello World & Main Method",
+      "html": "<h2>Your First Java Program</h2><p>Java is a class-based, object-oriented language especially designed for web development.</p><h3>Basic Structure:</h3><ul><li><strong>public class</strong> - Main class declaration</li><li><strong>public static void main</strong> - Entry point where program starts</li><li><strong>System.out.println</strong> - Prints text to console</li></ul><pre><code>public class HelloWorld {&#10;    public static void main(String[] args) {&#10;        System.out.println(\"Hello, Java!\");&#10;    }&#10;}</code></pre><p><strong>Compile:</strong> <code>javac HelloWorld.java</code><br><strong>Run:</strong> <code>java HelloWorld</code><br><strong>Practice:</strong> Change message to your name!</p>"
+    },
+    {
+      "title": "Lesson 2: Variables & Data Types",
+      "html": "<h2>Variables and Data Types</h2><p>All variables must be declared with their type before use. Java is statically typed.</p><h3>Primitive Types:</h3><table><tr><th>Type</th><th>Size</th><th>Example</th></tr><tr><td>int</td><td>4 bytes</td><td>42</td></tr><tr><td>double</td><td>8 bytes</td><td>3.14</td></tr><tr><td>boolean</td><td>1 bit</td><td>true</td></tr><tr><td>char</td><td>2 bytes</td><td>'A'</td></tr></table><pre><code>public class Variables {&#10;    public static void main(String[] args) {&#10;        int age = 25;&#10;        double salary = 50000.50;&#10;        String name = \"Alice\";&#10;        boolean isActive = true;&#10;        System.out.println(name + \" is \" + age + \" years old\");&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Control Structures",
+      "html": "<h2>Control Flow Statements</h2><p>Control structures change the order of execution based on conditions.</p><h3>if/else:</h3><pre><code>int age = 20;&#10;if (age >= 18) {&#10;    System.out.println(\"Adult\");&#10;} else {&#10;    System.out.println(\"Minor\");&#10;}</code></pre><h3>switch:</h3><pre><code>int day = 1;&#10;switch(day) {&#10;    case 1: System.out.println(\"Monday\"); break;&#10;    case 2: System.out.println(\"Tuesday\"); break;&#10;    default: System.out.println(\"Other day\");&#10;}</code></pre><h3>Loops:</h3><pre><code>for(int i=0; i&lt;5; i++) {&#10;    System.out.print(i + \" \");&#10;}&#10;// Output: 0 1 2 3 4</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Methods & Arrays",
+      "html": "<h2>Methods and Arrays</h2><p>Methods are reusable blocks of code. Arrays store multiple values of same type.</p><h3>Method Example:</h3><pre><code>public static int add(int a, int b) {&#10;    return a + b;&#10;}</code></pre><h3>Arrays:</h3><pre><code>public class ArraysExample {&#10;    public static void main(String[] args) {&#10;        int[] numbers = {1, 2, 3, 4, 5};&#10;        for(int num : numbers) {&#10;            System.out.println(num);&#10;        }&#10;        System.out.println(\"Length: \" + numbers.length);&#10;    }&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 5: Object-Oriented Basics",
+      "html": "<h2>Classes and Objects</h2><p>Java is object-oriented. Everything revolves around classes and objects.</p><h3>Class Definition:</h3><pre><code>class Person {&#10;    String name;&#10;    int age;&#10;    &#10;    void introduce() {&#10;        System.out.println(\"Hi, I'm \" + name);&#10;    }&#10;}</code></pre><h3>Creating Objects:</h3><pre><code>public class Main {&#10;    public static void main(String[] args) {&#10;        Person p = new Person();&#10;        p.name = \"Bob\";&#10;        p.age = 30;&#10;        p.introduce();  // Hi, I'm Bob&#10;    }&#10;}</code></pre>"
+    }
+  ]
+}

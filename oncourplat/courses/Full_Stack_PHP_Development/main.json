@@ -1,0 +1,32 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: MVC Architecture",
+      "html": "<h2>Model-View-Controller Pattern</h2><p>MVC separates concerns: Model (data), View (UI), Controller (logic). Makes code maintainable.</p><h3>Structure:</h3><ul><li><strong>Model:</strong> Database operations, business logic</li><li><strong>View:</strong> HTML templates</li><li><strong>Controller:</strong> Handles requests, coordinates Model+View</li></ul><pre><code>class UserController {&#10;    public function index() {&#10;        $model = new UserModel();&#10;        $users = $model->getAll();&#10;        require 'views/users/index.php';&#10;    }&#10;}</code></pre><p><strong>Benefits:</strong> Reusable components, easier testing, team collaboration.</p>"
+    },
+    {
+      "title": "Lesson 2: Composer & Dependencies",
+      "html": "<h2>PHP Package Manager</h2><p>Composer manages libraries and autoloading. Like npm for PHP.</p><pre><code>{&#10;    \"require\": {&#10;        \"monolog/monolog\": \"2.*\",&#10;        \"vlucas/phpdotenv\": \"^5.0\"&#10;    },&#10;    \"autoload\": {&#10;        \"psr-4\": {&#10;            \"App\\\": \"src/\"&#10;        }&#10;    }&#10;}</code></pre><pre><code>$ composer install&#10;$ composer require guzzlehttp/guzzle  // Add new package</code></pre><h3>Autoloading:</h3><pre><code>require 'vendor/autoload.php';&#10;$logger = new Monolog Logger('app');&#10;$logger->info('User logged in');</code></pre>"
+    },
+    {
+      "title": "Lesson 3: PDO Advanced",
+      "html": "<h2>Secure Database Operations</h2><p>PDO with prepared statements prevents SQL injection. Always use!</p><h3>CRUD Examples:</h3><pre><code>// CREATE&#10;$stmt = $pdo->prepare('INSERT INTO users (name, email) VALUES (?, ?)');&#10;$stmt->execute(['John', 'john@example.com']);&#10;$userId = $pdo->lastInsertId();&#10;&#10;// READ&#10;$stmt = $pdo->prepare('SELECT * FROM users WHERE id = ?');&#10;$stmt->execute([$userId]);&#10;$user = $stmt->fetch(PDO::FETCH_ASSOC);</code></pre><h3>Transactions:</h3><pre><code>$pdo->beginTransaction();&#10;try {&#10;    $pdo->exec('UPDATE accounts SET balance = balance - 100 WHERE id = 1');&#10;    $pdo->exec('UPDATE accounts SET balance = balance + 100 WHERE id = 2');&#10;    $pdo->commit();&#10;} catch (Exception $e) {&#10;    $pdo->rollBack();&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Sessions & Authentication",
+      "html": "<h2>User Sessions & Login System</h2><p>Sessions track logged-in users across requests.</p><pre><code>&lt;?php&#10;session_start();&#10;&#10;// Login&#10;if ($_POST && authenticate($_POST['email'], $_POST['password'])) {&#10;    $_SESSION['user_id'] = $user['id'];&#10;    $_SESSION['user_name'] = $user['name'];&#10;    header('Location: dashboard.php');&#10;}</code></pre><h3>Protected Pages:</h3><pre><code>&lt;?php&#10;session_start();&#10;if (!isset($_SESSION['user_id'])) {&#10;    header('Location: login.php');&#10;    exit;&#10;}</code></pre><p><strong>Security:</strong> Use <code>password_hash()</code>, <code>password_verify()</code>, HTTPS.</p>"
+    },
+    {
+      "title": "Lesson 5: RESTful APIs",
+      "html": "<h2>Building JSON APIs</h2><p>APIs return JSON data for frontend apps, mobile, etc.</p><pre><code>header('Content-Type: application/json');&#10;&#10;switch ($_SERVER['REQUEST_METHOD']) {&#10;    case 'GET':&#10;        if (isset($_GET['id'])) {&#10;            echo json_encode(getUser($_GET['id']));&#10;        } else {&#10;            echo json_encode(getAllUsers());&#10;        }&#10;        break;&#10;    case 'POST':&#10;        $data = json_decode(file_get_contents('php://input'), true);&#10;        echo json_encode(createUser($data));&#10;        break;&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 6: Templating with Twig",
+      "html": "<h2>Modern PHP Templating</h2><p>Twig separates logic from presentation. Much cleaner than mixing PHP in HTML.</p><pre><code>{# template.twig #}&#10;&lt;h1&gt;Welcome, {{ user.name }}!&lt;/h1&gt;&#10;&lt;ul&gt;&#10;{% for post in posts %}&#10;    &lt;li&gt;{{ post.title }} - {{ post.created|date('Y-m-d') }}&lt;/li&gt;&#10;{% endfor %}&lt;/ul&gt;</code></pre><pre><code>$loader = new Twig Loader FilesystemLoader(__DIR__ . '/templates');&#10;$twig = new Twig Environment($loader);&#10;echo $twig->render('user.twig', [&#10;    'user' => $currentUser,&#10;    'posts' => $userPosts&#10;]);</code></pre>"
+    },
+    {
+      "title": "Lesson 7: Deployment & Docker",
+      "html": "<h2>Production Deployment</h2><p>Containerize apps with Docker for consistent environments.</p><pre><code>FROM php:8.2-apache&#10;COPY . /var/www/html/&#10;RUN apt-get update &amp;&amp; apt-get install -y &#10;    default-mysql-client&#10;RUN docker-php-ext-install pdo_mysql&#10;EXPOSE 80</code></pre><h3>docker-compose.yml:</h3><pre><code>version: '3'&#10;services:&#10;  app:&#10;    build: .&#10;    ports:&#10;      - \"8080:80\"&#10;  db:&#10;    image: mysql:8.0&#10;    environment:&#10;      MYSQL_ROOT_PASSWORD: secret</code></pre>"
+    }
+  ]
+}

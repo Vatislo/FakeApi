@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Rust for WebAssembly",
+    "duration": "40",
+    "language": "Rust",
+    "level": "Senior",
+    "instructor": {
+      "name": "David Müller",
+      "email": "david.mueller@wasmexpert.com"
+    }
+  }
+}

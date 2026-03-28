@@ -1,0 +1,44 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: FastAPI Fundamentals",
+      "html": "<h2>Modern Python API Framework</h2><p>FastAPI = Fast + Automatic docs + Type hints + Async. 200% faster than Flask!</p><h3>Hello World API:</h3><pre><code>from fastapi import FastAPI&#10;app = FastAPI()&#10;&#10;@app.get(\"/\")&#10;def read_root():&#10;    return {\"message\": \"Hello World\"}&#10;&#10;@app.get(\"/items/{item_id}\")&#10;def read_item(item_id: int, q: str = None):&#10;    return {\"item_id\": item_id, \"q\": q}</code></pre><p>Auto-generated docs: <code>http://localhost:8000/docs</code></p>"
+    },
+    {
+      "title": "Lesson 2: Pydantic Models & Validation",
+      "html": "<h2>Data Validation with Pydantic</h2><p>Pydantic validates requests/responses automatically using type hints.</p><h3>User Model:</h3><pre><code>from pydantic import BaseModel&#10;from typing import Optional&#10;&#10;class UserBase(BaseModel):&#10;    email: str&#10;    name: str&#10;&#10;class UserCreate(UserBase):&#10;    password: str&#10;&#10;class User(UserBase):&#10;    id: int&#10;&#10;    class Config:&#10;        from_attributes = True</code></pre><pre><code>@app.post(\"/users/\", response_model=User)&#10;def create_user(user: UserCreate):&#10;    # Auto-validated + parsed&#10;    return user_service.create(user)</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Dependency Injection",
+      "html": "<h2>FastAPI Dependencies</h2><p>Reusable authentication, database connections, etc.</p><h3>Common Dependencies:</h3><pre><code>from fastapi import Depends, HTTPException, status&#10;from fastapi.security import OAuth2PasswordBearer&#10;&#10;oauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")&#10;&#10;async def get_current_user(token: str = Depends(oauth2_scheme)):&#10;    user = verify_token(token)&#10;    if not user:&#10;        raise HTTPException(status_code=401, detail=\"Invalid token\")&#10;    return user&#10;&#10;@app.get(\"/users/me\")&#10;async def read_users_me(current_user: User = Depends(get_current_user)):&#10;    return current_user</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Async SQLAlchemy",
+      "html": "<h2>Non-blocking Database Access</h2><p>Async/await with databases using SQLAlchemy 2.0.</p><h3>Async Session:</h3><pre><code>from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine&#10;from sqlalchemy.orm import sessionmaker&#10;&#10;engine = create_async_engine(\"postgresql+asyncpg://user:pass@localhost/db\")&#10;AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)&#10;&#10;async def get_db():&#10;    async with AsyncSessionLocal() as session:&#10;        yield session</code></pre>"
+    },
+    {
+      "title": "Lesson 5: JWT Authentication",
+      "html": "<h2>Secure Token-based Auth</h2><p>JSON Web Tokens for stateless authentication.</p><h3>Token Endpoints:</h3><pre><code>@app.post(\"/token\")&#10;async def login(form_data: OAuth2PasswordRequestForm = Depends()):&#10;    user = authenticate_user(form_data.username, form_data.password)&#10;    if not user:&#10;        raise HTTPException(status_code=401)&#10;    access_token = create_access_token(data={\"sub\": user.email})&#10;    return {\"access_token\": access_token, \"token_type\": \"bearer\"}</code></pre>"
+    },
+    {
+      "title": "Lesson 6: API Versioning",
+      "html": "<h2>Production API Versioning</h2><p>Support multiple API versions without breaking clients.</p><h3>Path-based Versioning:</h3><pre><code>from fastapi import APIRouter&#10;&#10;v1 = APIRouter(prefix=\"/v1\", tags=[\"v1\"])&#10;v2 = APIRouter(prefix=\"/v2\", tags=[\"v2\"])&#10;&#10;@v1.get(\"/users\")&#10;def get_users_v1():&#10;    return user_service.get_users_v1()&#10;&#10;app.include_router(v1)&#10;app.include_router(v2)</code></pre>"
+    },
+    {
+      "title": "Lesson 7: Background Tasks",
+      "html": "<h2>Async Background Processing</h2><p>Email sending, image processing without blocking API.</p><h3>Celery Integration:</h3><pre><code>from fastapi import BackgroundTasks&#10;&#10;@app.post(\"/send-email/\")&#10;async def send_email(background_tasks: BackgroundTasks, email: EmailSchema):&#10;    background_tasks.add_task(send_email_task, email)&#10;    return {\"message\": \"Email queued\"}&#10;&#10;# Or Celery&#10;send_email_task.delay(email.to, email.content)</code></pre>"
+    },
+    {
+      "title": "Lesson 8: OpenAPI Customization",
+      "html": "<h2>Custom API Documentation</h2><p>Beautiful, interactive docs with full customization.</p><h3>Custom Schema:</h3><pre><code>app = FastAPI(&#10;    title=\"User API\",&#10;    description=\"Complete User Management API\",&#10;    version=\"1.0.0\",&#10;    openapi_tags=[&#10;        {\"name\": \"users\", \"description\": \"User operations\"},&#10;        {\"name\": \"auth\", \"description\": \"Authentication\"}&#10;    ]&#10;)</code></pre>"
+    },
+    {
+      "title": "Lesson 9: Testing APIs",
+      "html": "<h2>Comprehensive Test Suite</h2><p>Test your API like a pro with pytest + TestClient.</p><h3>Test File:</h3><pre><code>from fastapi.testclient import TestClient&#10;from main import app&#10;&#10;client = TestClient(app)&#10;&#10;def test_create_user():&#10;    response = client.post(\"/users/\", json={&#10;        \"email\": \"test@example.com\",&#10;        \"password\": \"testpass123\"&#10;    })&#10;    assert response.status_code == 201&#10;    assert response.json()[\"email\"] == \"test@example.com\"</code></pre>"
+    },
+    {
+      "title": "Lesson 10: Docker Deployment",
+      "html": "<h2>Production Deployment</h2><p>Containerize and deploy with Docker + Gunicorn + Uvicorn.</p><h3>Dockerfile:</h3><pre><code>FROM python:3.11-slim&#10;WORKDIR /app&#10;COPY requirements.txt .&#10;RUN pip install -r requirements.txt&#10;COPY . .&#10;CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]</code></pre>"
+    }
+  ]
+}

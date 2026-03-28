@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Advanced Java Techniques",
+    "duration": "40",
+    "language": "Java",
+    "level": "Senior",
+    "instructor": {
+      "name": "Prof. Liam O'Connor",
+      "email": "liam.oconnor@advancedjava.com"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: Virtual Threads (Java 21)",
+      "html": "<h2>Project Loom - Virtual Threads</h2><p>Millions of threads with minimal memory! Virtual threads make concurrency simple.</p><h3>Traditional vs Virtual:</h3><pre><code>// Platform Thread (Heavy - 2MB stack)&#10;Thread t = new Thread(() -&gt; {&#10;    System.out.println(\"Heavy thread\");&#10;});&#10;t.start();&#10;&#10;// Virtual Thread (Lightweight)&#10;Thread vThread = Thread.ofVirtual().start(() -&gt; {&#10;    System.out.println(\"Lightweight!\");&#10;});</code></pre><h3>Structured Concurrency:</h3><pre><code>try (var scope = StructuredTaskScope.ShutdownOnFailure()) {&#10;    Future&lt;Integer&gt; result1 = scope.fork(() -&gt; compute(1));&#10;    Future&lt;Integer&gt; result2 = scope.fork(() -&gt; compute(2));&#10;    scope.join();&#10;    scope.throwIfFailed();&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 2: Pattern Matching (Java 21)",
+      "html": "<h2>Pattern Matching Revolution</h2><p>Eliminates boilerplate instanceof + casting everywhere.</p><h3>Switch Expressions:</h3><pre><code>String result = switch (obj) {&#10;    case Integer i -&gt; \"int \" + i;&#10;    case String s when s.length() &gt; 5 -&gt; \"long string\";&#10;    case null -&gt; \"null\";&#10;    default -&gt; \"unknown\";&#10;};</code></pre><h3>Pattern Matching instanceof:</h3><pre><code>if (obj instanceof String s &amp;&amp; s.length() &gt; 0) {&#10;    System.out.println(s.toUpperCase());&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Records & Sealed Classes",
+      "html": "<h2>Modern Data Classes</h2><p>Records = immutable data carriers. Sealed classes = controlled inheritance.</p><h3>Records:</h3><pre><code>public record User(String name, String email, int age) {}&#10;&#10;// Auto-generates: equals(), hashCode(), toString(), accessors&#10;User user = new User(\"Alice\", \"alice@ex.com\", 30);&#10;System.out.println(user.name());  // Alice</code></pre><h3>Sealed Classes:</h3><pre><code>public sealed interface Shape permits Circle, Rectangle {&#10;}&#10;public final class Circle implements Shape {&#10;    public double radius;&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Reactive Streams",
+      "html": "<h2>Reactive Programming with Java</h2><p>Non-blocking, backpressure-aware data streams.</p><h3>Reactive Streams:</h3><pre><code>Flux&lt;String&gt; names = Flux.just(\"Alice\", \"Bob\", \"Charlie\")&#10;    .delayElements(Duration.ofMillis(500))&#10;    .map(String::toUpperCase);&#10;&#10;names.subscribe(System.out::println);</code></pre>"
+    },
+    {
+      "title": "Lesson 5: CompletableFuture Advanced",
+      "html": "<h2>Asynchronous Programming</h2><p>Compose async operations elegantly.</p><h3>Composing Futures:</h3><pre><code>CompletableFuture&lt;String&gt; future = CompletableFuture&#10;    .supplyAsync(() -&gt; fetchUser(1))&#10;    .thenApplyAsync(user -&gt; fetchPosts(user.id))&#10;    .thenApply(posts -&gt; formatPosts(posts))&#10;    .exceptionally(throwable -&gt; \"Error: \" + throwable.getMessage());</code></pre>"
+    },
+    {
+      "title": "Lesson 6: Custom Annotations",
+      "html": "<h2>Annotation Processors</h2><p>Generate code at compile time.</p><h3>@LogThis Annotation:</h3><pre><code>@Target({ElementType.METHOD})&#10;@Retention(RetentionPolicy.RUNTIME)&#10;public @interface LogThis {&#10;    LogLevel level() default LogLevel.INFO;&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 7: Module System Deep Dive",
+      "html": "<h2>Java Platform Module System</h2><p>Strong encapsulation and explicit dependencies.</p><h3>module-info.java:</h3><pre><code>module com.example.app {&#10;    requires java.base;&#10;    requires java.sql;&#10;    requires static lombok;&#10;    &#10;    exports com.example.api;&#10;    opens com.example.internal to spring.core;&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 8: JVM Internals",
+      "html": "<h2>Understanding JVM</h2><p>GC algorithms, JIT compilation, memory areas.</p><h3>JVM Flags:</h3><pre><code>java -XX:+PrintGCDetails &#10;     -XX:+UseG1GC &#10;     -Xmx2g &#10;     -Xms1g &#10;     MyApp</code></pre>"
+    },
+    {
+      "title": "Lesson 9: GraalVM Native Image",
+      "html": "<h2>Compile Java to Native Executables</h2><p>Startup in milliseconds, RSS under 50MB!</p><h3>native-image:</h3><pre><code>native-image -H:ConfigurationFileDirectories=src/main/resources/META-INF/native-image &#10;              --no-fallback &#10;              -cp target/classes &#10;              com.example.Main</code></pre>"
+    },
+    {
+      "title": "Lesson 10: Project Loom Integration",
+      "html": "<h2>Future of Java Concurrency</h2><p>Virtual threads + structured concurrency everywhere.</p><h3>Web Server Example:</h3><pre><code>try (var server = Server.start(8080)) {&#10;    server.handle(\"/api/*\", (req, resp) -&gt; {&#10;        Thread.currentThread().setName(\"handler-\" + req.path());&#10;        return handleRequest(req);&#10;    });&#10;    server.awaitShutdown();&#10;}</code></pre>"
+    }
+  ]
+}

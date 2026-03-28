@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "React Development with JavaScript",
+    "duration": "25",
+    "language": "JavaScript",
+    "level": "Middle",
+    "instructor": {
+      "name": "Alex Thompson",
+      "email": "alex.thompson@reactexpert.com"
+    }
+  }
+}

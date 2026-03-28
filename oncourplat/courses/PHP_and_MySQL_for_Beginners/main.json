@@ -1,0 +1,24 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: PHP Basics & Hello World",
+      "html": "<h2>Your First PHP Script</h2><p>PHP is a server-side scripting language designed for web development. Runs on server, generates HTML.</p><h3>Basic Structure:</h3><ul><li><code>&lt;?php ?&gt;</code> - PHP tags</li><li><code>echo</code> - Output to browser</li><li><code>;</code> - Statement terminator</li></ul><pre><code>&lt;!DOCTYPE html&gt;&#10;&lt;html&gt;&#10;&lt;body&gt;&#10;&lt;?php&#10;  echo \"Hello, PHP!\";&#10;  $name = \"World\";&#10;  echo \"&lt;h2&gt;Hello, $name!&lt;/h2&gt;\";&#10;?&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;</code></pre><p><strong>Run:</strong> Save as <code>index.php</code>, open in browser via web server.</p>"
+    },
+    {
+      "title": "Lesson 2: Variables & Data Types",
+      "html": "<h2>PHP Variables</h2><p>Variables start with <code>$</code>. PHP is loosely typed - no need to declare type.</p><h3>Types:</h3><table><tr><th>Type</th><th>Example</th></tr><tr><td>String</td><td>$name = \"John\"</td></tr><tr><td>Integer</td><td>$age = 25</td></tr><tr><td>Float</td><td>$price = 19.99</td></tr><tr><td>Boolean</td><td>$active = true</td></tr><tr><td>Array</td><td>$fruits = [\"apple\", \"banana\"]</td></tr></table><pre><code>&lt;?php&#10;$name = \"Alice\";&#10;$age = 25;&#10;$height = 1.65;&#10;$isStudent = true;&#10;&#10;echo \"Name: $name, Age: $age, Height: $height\";&#10;if ($isStudent) {&#10;    echo \" - Student\";&#10;}&#10;?&gt;</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Forms & $_POST/$_GET",
+      "html": "<h2>Handling Forms</h2><p>PHP receives data from HTML forms via <code>$_POST</code> and <code>$_GET</code>.</p><pre><code>&lt;form method=\"POST\" action=\"process.php\"&gt;&#10;  Name: &lt;input type=\"text\" name=\"username\"&gt;&lt;br&gt;&#10;  Email: &lt;input type=\"email\" name=\"email\"&gt;&lt;br&gt;&#10;  &lt;input type=\"submit\" value=\"Send\"&gt;&#10;&lt;/form&gt;</code></pre><pre><code>&lt;?php  // process.php&#10;if ($_POST) {&#10;    $username = $_POST[\"username\"];&#10;    $email = $_POST[\"email\"];&#10;    &#10;    echo \"&lt;h2&gt;Welcome, $username!&lt;/h2&gt;\";&#10;    echo \"Your email: $email\";&#10;}&#10;?&gt;</code></pre><p><strong>Security:</strong> Always validate and sanitize input!</p>"
+    },
+    {
+      "title": "Lesson 4: MySQL Connection",
+      "html": "<h2>Connecting to MySQL</h2><p>PHP + MySQL = dynamic websites. Use PDO for modern database connections.</p><pre><code>&lt;?php&#10;// Database config&#10;$host = \"localhost\";&#10;$dbname = \"myDB\";&#10;$username = \"root\";&#10;$password = \"\";&#10;&#10;try {&#10;    $pdo = new PDO(\"mysql:host=$host;dbname=$dbname\", $username, $password);&#10;    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);&#10;    echo \"Connected successfully\";&#10;} catch(PDOException $e) {&#10;    echo \"Connection failed: \" . $e->getMessage();&#10;}&#10;?&gt;</code></pre>"
+    },
+    {
+      "title": "Lesson 5: CRUD Operations",
+      "html": "<h2>Create, Read, Update, Delete</h2><p>Basic database operations with prepared statements (secure!).</p><h3>Create (INSERT):</h3><pre><code>$stmt = $pdo->prepare(\"INSERT INTO users (name, email) VALUES (?, ?)\");&#10;$stmt->execute([\"John\", \"john@example.com\"]);</code></pre><h3>Read (SELECT):</h3><pre><code>$stmt = $pdo->query(\"SELECT * FROM users\");&#10;while ($row = $stmt->fetch()) {&#10;    echo $row[\"name\"] . \" - \" . $row[\"email\"] . \"&lt;br&gt;\";&#10;}</code></pre>"
+    }
+  ]
+}

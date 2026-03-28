@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Java EE Development",
+    "duration": "40",
+    "language": "Java",
+    "level": "Senior",
+    "instructor": {
+      "name": "Dr. Elena Martinez",
+      "email": "elena.martinez@javaeeexpert.com"
+    }
+  }
+}

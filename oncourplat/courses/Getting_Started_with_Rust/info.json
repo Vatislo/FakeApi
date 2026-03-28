@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Getting Started with Rust",
+    "duration": "15",
+    "language": "Rust",
+    "level": "Junior",
+    "instructor": {
+      "name": "Emma Johnson",
+      "email": "emma.johnson@rustlang.com"
+    }
+  }
+}

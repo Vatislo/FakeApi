@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Java for Beginners",
+    "duration": "15",
+    "language": "Java",
+    "level": "Junior",
+    "instructor": {
+      "name": "Carlos Rodriguez",
+      "email": "carlos.rodriguez@javaedu.com"
+    }
+  }
+}

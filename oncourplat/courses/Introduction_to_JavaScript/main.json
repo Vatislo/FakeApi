@@ -1,0 +1,24 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: JavaScript Basics",
+      "html": "<h2>Your First JavaScript Program</h2><p>JavaScript makes websites interactive. Runs in browser and on servers (Node.js).</p><h3>Hello World:</h3><pre><code>&lt;script&gt;&#10;console.log(\"Hello, JavaScript!\");&#10;alert(\"Welcome!\");&#10;&#10;// Write to page&#10;document.write(\"&lt;h1&gt;Hello!&lt;/h1&gt;\");&#10;&lt;/script&gt;</code></pre><h3>Where to Put JavaScript:</h3><ul><li><code>&lt;script&gt;</code> in HTML</li><li><code>external.js</code> file: <code>&lt;script src=\"script.js\"&gt;&lt;/script&gt;</code></li></ul>"
+    },
+    {
+      "title": "Lesson 2: Variables & Data Types",
+      "html": "<h2>Storing Data</h2><p>JavaScript variables hold data. Use <code>let</code>, <code>const</code>, <code>var</code>.</p><h3>Basic Types:</h3><table><tr><th>Type</th><th>Example</th></tr><tr><td>Number</td><td><code>42</code>, <code>3.14</code></td></tr><tr><td>String</td><td><code>\"Hello\"</code>, <code>'World'</code></td></tr><tr><td>Boolean</td><td><code>true</code>, <code>false</code></td></tr><tr><td>Array</td><td><code>[1, 2, 3]</code></td></tr></table><pre><code>let name = \"Alice\";     // String&#10;let age = 25;          // Number&#10;const PI = 3.14;       // Constant&#10;let scores = [90, 85]; // Array&#10;&#10;console.log(`Hi ${name}, you are ${age}`);</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Functions",
+      "html": "<h2>Reusable Code Blocks</h2><p>Functions perform tasks. Can take inputs (parameters) and return values.</p><h3>Function Examples:</h3><pre><code>// Declare function&#10;function greet(name) {&#10;    return \"Hello, \" + name + \"!\";&#10;}</code></pre><pre><code>// Arrow function (modern)&#10;const add = (a, b) =&gt; a + b;&#10;const multiply = (x, y) =&gt; {&#10;    console.log(`${x} * ${y}`);&#10;    return x * y;&#10;};</code></pre><pre><code>console.log(greet(\"Bob\"));  // Hello, Bob!&#10;console.log(add(5, 3));      // 8</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Conditions & Loops",
+      "html": "<h2>Control Flow</h2><p>Make decisions and repeat code.</p><h3>if/else:</h3><pre><code>let age = 20;&#10;if (age >= 18) {&#10;    console.log(\"Adult\");&#10;} else {&#10;    console.log(\"Minor\");&#10;}</code></pre><h3>Loops:</h3><pre><code>// for loop&#10;for (let i = 0; i &lt; 5; i++) {&#10;    console.log(i);  // 0 1 2 3 4&#10;}</code></pre><pre><code>// for...of (arrays)&#10;let fruits = [\"apple\", \"banana\", \"orange\"];&#10;for (let fruit of fruits) {&#10;    console.log(fruit);&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 5: DOM Manipulation",
+      "html": "<h2>Make Pages Interactive</h2><p>Change HTML/CSS from JavaScript.</p><h3>Select Elements:</h3><pre><code>&lt;button id=\"myButton\"&gt;Click me&lt;/button&gt;&#10;&lt;div id=\"output\"&gt;&lt;/div&gt;</code></pre><pre><code>const button = document.getElementById(\"myButton\");&#10;const output = document.getElementById(\"output\");&#10;&#10;// Add click event&#10;button.onclick = function() {&#10;    output.innerHTML = \"&lt;h2&gt;Button clicked!&lt;/h2&gt;\";&#10;    output.style.color = \"blue\";&#10;};</code></pre>"
+    }
+  ]
+}

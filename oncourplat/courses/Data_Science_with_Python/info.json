@@ -1,0 +1,12 @@
+{
+  "course": {
+    "title": "Data Science with Python",
+    "duration": "25",
+    "language": "Python",
+    "level": "Middle",
+    "instructor": {
+      "name": "Dr. Rachel Nguyen",
+      "email": "rachel.nguyen@datascience.com"
+    }
+  }
+}

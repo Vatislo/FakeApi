@@ -1,0 +1,24 @@
+{
+  "lessons": [
+    {
+      "title": "Lesson 1: Hello World & Variables",
+      "html": "<h2>Your First Rust Program</h2><p>Rust is a systems programming language that guarantees memory safety without garbage collection.</p><h3>Basic Structure:</h3><ul><li><strong>fn main()</strong> - Every Rust program starts here</li><li><strong>println!()</strong> - Macro to print formatted text</li><li><strong>;</strong> - Required at end of statements</li></ul><pre><code>fn main() {&#10;    println!(\"Hello, Rust!\");&#10;    let x = 5;&#10;    let name = \"Alice\";&#10;    println!(\"x = {}, name = {}\", x, name);&#10;}</code></pre><p><strong>Key Concept:</strong> Variables are <em>immutable</em> by default. Add <code>mut</code> to make mutable: <code>let mut x = 5;</code></p>"
+    },
+    {
+      "title": "Lesson 2: Data Types & Operators",
+      "html": "<h2>Primitive Data Types</h2><p>Rust has type inference but strict typing. Compiler usually guesses the type correctly.</p><h3>Main Types:</h3><table><tr><th>Type</th><th>Example</th><th>Description</th></tr><tr><td>i32</td><td>42</td><td>Signed 32-bit integer</td></tr><tr><td>u32</td><td>42u32</td><td>Unsigned 32-bit integer</td></tr><tr><td>f64</td><td>3.14</td><td>64-bit float (default)</td></tr><tr><td>bool</td><td>true</td><td>Boolean</td></tr></table><pre><code>fn main() {&#10;    let guess: u32 = \"42\".parse().expect(\"Not a number!\");&#10;    let x = 2.0;  // f64&#10;    let y: f32 = 3.0;  // 32-bit float&#10;    let sum = 5 + 10;&#10;    let logical = true &amp;&amp; false;&#10;    println!(\"Results: {}, {}, {}\", guess, sum, logical);&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 3: Functions & Control Flow",
+      "html": "<h2>Functions and Control Structures</h2><p>Functions are declared with <code>fn</code>. Last expression (without <code>;</code>) becomes return value.</p><h3>Function Example:</h3><pre><code>fn add(a: i32, b: i32) -> i32 {&#10;    a + b  // No semicolon = return value&#10;}</code></pre><h3>Control Flow:</h3><ul><li><strong>if/else</strong>: Expressions that return values</li><li><strong>loop</strong>: Infinite loop with <code>break</code></li><li><strong>while</strong>: Loop while condition is true</li></ul><pre><code>fn main() {&#10;    let result = add(5, 3);&#10;    let number = 6;&#10;    let is_divisible = if number % 4 == 0 {&#10;        println!(\"divisible\");&#10;        true&#10;    } else {&#10;        println!(\"not divisible\");&#10;        false&#10;    };&#10;}</code></pre>"
+    },
+    {
+      "title": "Lesson 4: Ownership Basics",
+      "html": "<h2>Rust's Ownership Model</h2><p>Rust ensures memory safety through ownership. No garbage collector needed!</p><h3>Three Rules:</h3><ol><li>Each value has a single variable (owner)</li><li>Only one owner at a time</li><li>When owner goes out of scope, value is dropped</li></ol><pre><code>fn main() {&#10;    let s = String::from(\"hello\");  // s owns the value&#10;    // takes_ownership(s);  // Error! s moved into function&#10;    &#10;    let x = 5;&#10;    makes_copy(x);  // i32 implements Copy trait&#10;    println!(\"x = {}\", x);  // Still works!&#10;}</code></pre><p><strong>Copy Types:</strong> Simple types like <code>i32</code>, <code>bool</code> can be copied freely.</p>"
+    },
+    {
+      "title": "Lesson 5: Structs & Enums",
+      "html": "<h2>Custom Data Types</h2><p>Structs combine multiple related values. Enums represent different variants of data.</p><h3>Struct Example:</h3><pre><code>struct Person {&#10;    name: String,&#10;    age: u8,&#10;}</code></pre><pre><code>fn main() {&#10;    let p = Person {&#10;        name: String::from(\"Bob\"),&#10;        age: 30,&#10;    };&#10;    println!(\"{} is {} years old\", p.name, p.age);&#10;}</code></pre><h3>Enum Example:</h3><pre><code>enum Message {&#10;    Quit,&#10;    Move { x: i32, y: i32 },&#10;    Write(String),&#10;    ChangeColor(i32, i32, i32),&#10;}</code></pre>"
+    }
+  ]
+}
