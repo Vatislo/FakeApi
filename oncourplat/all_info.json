@@ -1,227 +1,152 @@
 [
   {
-    "folder": "Advanced_Java_Techniques",
-    "content": {
-      "course": {
-        "title": "Advanced Java Techniques",
-        "duration": "40",
-        "language": "Java",
-        "level": "Senior",
-        "instructor": {
-          "name": "Prof. Liam O'Connor",
-          "email": "liam.oconnor@advancedjava.com"
-        }
-      }
+    "title": "Advanced Java Techniques",
+    "duration": "40",
+    "language": "Java",
+    "level": "Senior",
+    "instructor": {
+      "name": "Prof. Liam O'Connor",
+      "email": "liam.oconnor@advancedjava.com"
     }
   },
   {
-    "folder": "Advanced_Python_Programming",
-    "content": {
-      "course": {
-        "title": "Advanced Python Programming",
-        "duration": "40",
-        "language": "Python",
-        "level": "Senior",
-        "instructor": {
-          "name": "Dr. Michael Chen",
-          "email": "michael.chen@pythonexpert.com"
-        }
-      }
+    "title": "Advanced Python Programming",
+    "duration": "40",
+    "language": "Python",
+    "level": "Senior",
+    "instructor": {
+      "name": "Dr. Michael Chen",
+      "email": "michael.chen@pythonexpert.com"
     }
   },
   {
-    "folder": "Building_REST_APIs_with_Python",
-    "content": {
-      "course": {
-        "title": "Building REST APIs with Python",
-        "duration": "40",
-        "language": "Python",
-        "level": "Senior",
-        "instructor": {
-          "name": "Sophie Laurent",
-          "email": "sophie.laurent@api.expert"
-        }
-      }
+    "title": "Building REST APIs with Python",
+    "duration": "40",
+    "language": "Python",
+    "level": "Senior",
+    "instructor": {
+      "name": "Sophie Laurent",
+      "email": "sophie.laurent@api.expert"
     }
   },
   {
-    "folder": "Data_Science_with_Python",
-    "content": {
-      "course": {
-        "title": "Data Science with Python",
-        "duration": "25",
-        "language": "Python",
-        "level": "Middle",
-        "instructor": {
-          "name": "Dr. Rachel Nguyen",
-          "email": "rachel.nguyen@datascience.com"
-        }
-      }
+    "title": "Data Science with Python",
+    "duration": "25",
+    "language": "Python",
+    "level": "Middle",
+    "instructor": {
+      "name": "Dr. Rachel Nguyen",
+      "email": "rachel.nguyen@datascience.com"
     }
   },
   {
-    "folder": "Data_Structures_and_Algorithms_in_Rust",
-    "content": {
-      "course": {
-        "title": "Data Structures and Algorithms in Rust",
-        "duration": "40",
-        "language": "Rust",
-        "level": "Senior",
-        "instructor": {
-          "name": "Dr. Akira Tanaka",
-          "email": "akira.tanaka@rustalgo.com"
-        }
-      }
+    "title": "Data Structures and Algorithms in Rust",
+    "duration": "40",
+    "language": "Rust",
+    "level": "Senior",
+    "instructor": {
+      "name": "Dr. Akira Tanaka",
+      "email": "akira.tanaka@rustalgo.com"
     }
   },
   {
-    "folder": "Full_Stack_PHP_Development",
-    "content": {
-      "course": {
-        "title": "Full Stack PHP Development",
-        "duration": "25",
-        "language": "PHP",
-        "level": "Middle",
-        "instructor": {
-          "name": "James Wilson",
-          "email": "james.wilson@fullstackphp.com"
-        }
-      }
+    "title": "Full Stack PHP Development",
+    "duration": "25",
+    "language": "PHP",
+    "level": "Middle",
+    "instructor": {
+      "name": "James Wilson",
+      "email": "james.wilson@fullstackphp.com"
     }
   },
   {
-    "folder": "Getting_Started_with_Rust",
-    "content": {
-      "course": {
-        "title": "Getting Started with Rust",
-        "duration": "15",
-        "language": "Rust",
-        "level": "Junior",
-        "instructor": {
-          "name": "Emma Johnson",
-          "email": "emma.johnson@rustlang.com"
-        }
-      }
+    "title": "Getting Started with Rust",
+    "duration": "15",
+    "language": "Rust",
+    "level": "Junior",
+    "instructor": {
+      "name": "Emma Johnson",
+      "email": "emma.johnson@rustlang.com"
     }
   },
   {
-    "folder": "Introduction_to_JavaScript",
-    "content": {
-      "course": {
-        "title": "Introduction to JavaScript",
-        "duration": "15",
-        "language": "JavaScript",
-        "level": "Junior",
-        "instructor": {
-          "name": "Lisa Chen",
-          "email": "lisa.chen@javascriptbasics.com"
-        }
-      }
+    "title": "Introduction to JavaScript",
+    "duration": "15",
+    "language": "JavaScript",
+    "level": "Junior",
+    "instructor": {
+      "name": "Lisa Chen",
+      "email": "lisa.chen@javascriptbasics.com"
     }
   },
   {
-    "folder": "Java_EE_Development",
-    "content": {
-      "course": {
-        "title": "Java EE Development",
-        "duration": "40",
-        "language": "Java",
-        "level": "Senior",
-        "instructor": {
-          "name": "Dr. Elena Martinez",
-          "email": "elena.martinez@javaeeexpert.com"
-        }
-      }
+    "title": "Java EE Development",
+    "duration": "40",
+    "language": "Java",
+    "level": "Senior",
+    "instructor": {
+      "name": "Dr. Elena Martinez",
+      "email": "elena.martinez@javaeeexpert.com"
     }
   },
   {
-    "folder": "Java_for_Beginners",
-    "content": {
-      "course": {
-        "title": "Java for Beginners",
-        "duration": "15",
-        "language": "Java",
-        "level": "Junior",
-        "instructor": {
-          "name": "Carlos Rodriguez",
-          "email": "carlos.rodriguez@javaedu.com"
-        }
-      }
+    "title": "Java for Beginners",
+    "duration": "15",
+    "language": "Java",
+    "level": "Junior",
+    "instructor": {
+      "name": "Carlos Rodriguez",
+      "email": "carlos.rodriguez@javaedu.com"
     }
   },
   {
-    "folder": "Mastering_PHP",
-    "content": {
-      "course": {
-        "title": "Mastering PHP",
-        "duration": "30",
-        "language": "PHP",
-        "level": "Middle",
-        "instructor": {
-          "name": "Anna Petrova",
-          "email": "anna.petrova@example.com"
-        }
-      }
+    "title": "Mastering PHP",
+    "duration": "30",
+    "language": "PHP",
+    "level": "Middle",
+    "instructor": {
+      "name": "Anna Petrova",
+      "email": "anna.petrova@example.com"
     }
   },
   {
-    "folder": "PHP_and_MySQL_for_Beginners",
-    "content": {
-      "course": {
-        "title": "PHP and MySQL for Beginners",
-        "duration": "15",
-        "language": "PHP",
-        "level": "Junior",
-        "instructor": {
-          "name": "Maria Garcia",
-          "email": "maria.garcia@phpbasics.com"
-        }
-      }
+    "title": "PHP and MySQL for Beginners",
+    "duration": "15",
+    "language": "PHP",
+    "level": "Junior",
+    "instructor": {
+      "name": "Maria Garcia",
+      "email": "maria.garcia@phpbasics.com"
     }
   },
   {
-    "folder": "React_Development_with_JavaScript",
-    "content": {
-      "course": {
-        "title": "React Development with JavaScript",
-        "duration": "25",
-        "language": "JavaScript",
-        "level": "Middle",
-        "instructor": {
-          "name": "Alex Thompson",
-          "email": "alex.thompson@reactexpert.com"
-        }
-      }
+    "title": "React Development with JavaScript",
+    "duration": "25",
+    "language": "JavaScript",
+    "level": "Middle",
+    "instructor": {
+      "name": "Alex Thompson",
+      "email": "alex.thompson@reactexpert.com"
     }
   },
   {
-    "folder": "Rust_for_WebAssembly",
-    "content": {
-      "course": {
-        "title": "Rust for WebAssembly",
-        "duration": "40",
-        "language": "Rust",
-        "level": "Senior",
-        "instructor": {
-          "name": "David Müller",
-          "email": "david.mueller@wasmexpert.com"
-        }
-      }
+    "title": "Rust for WebAssembly",
+    "duration": "40",
+    "language": "Rust",
+    "level": "Senior",
+    "instructor": {
+      "name": "David Müller",
+      "email": "david.mueller@wasmexpert.com"
     }
   },
   {
-    "folder": "Web_Development_with_JavaScript",
-    "content": {
-      "course": {
-        "title": "Web Development with JavaScript",
-        "duration": "25",
-        "language": "JavaScript",
-        "level": "Middle",
-        "instructor": {
-          "name": "Sarah Kim",
-          "email": "sarah.kim@webdev.com"
-        }
-      }
+    "title": "Web Development with JavaScript",
+    "duration": "25",
+    "language": "JavaScript",
+    "level": "Middle",
+    "instructor": {
+      "name": "Sarah Kim",
+      "email": "sarah.kim@webdev.com"
     }
   }
 ]
