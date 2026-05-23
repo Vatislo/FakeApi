@@ -80,16 +80,6 @@
     }
   },
   {
-    "title": "JavaScript Fundamentals",
-    "duration": "15",
-    "language": "JavaScript",
-    "level": "Junior",
-    "instructor": {
-      "name": "TBD",
-      "email": "TBD"
-    }
-  },
-  {
     "title": "Java EE Development",
     "duration": "40",
     "language": "Java",
